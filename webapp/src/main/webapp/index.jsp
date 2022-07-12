@@ -1,5 +1,7 @@
 Hello, World!
 Welcome to DevOps training!
 
-You are done with creating pipeline!
+You are done with creating pipeline successfully!
+
+
 

@@ -1,17 +1,28 @@
+def gv=load "script.groovy"
 pipeline{
 	agent any
+	parameters{
+		string(name: 'VERSION', defaultvalue: '', description: '')
+		choice(name: 'VERSION', choices: ['1.1.0', '1.2.0', '1.3.0'], description: '')
+		booleanparam(name: 'executetests', defaultvalue:true, description: '')
 	stages{
 		stage("download code"){
 			steps{
-				git 'https://github.com/smareed/maven.git'
-			}}
+				script{
+					gv.download()
+					
+				}}}
 		stage("build project"){
 			steps{
-				sh 'mvn clean install'
-			}}
+				script{
+					gv.build()
+					
+				}}}
 		stage("deploy to QA"){
 			steps{
-				sh 'scp webapp/target/webapp.war root@172.31.32.5:/var/lib/tomcat9/webapps/qaenv.war'
-			}}
+				script{
+					gv.deploy()
+				}}}
+		}
 	}
 }

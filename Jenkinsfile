@@ -11,7 +11,7 @@ pipeline{
 			}}
 		stage("deploy to QA"){
 			steps{
-				sh 'scp **/*.war root@172.31.32.5:/var/lib/tomcat9/webapps/qaenv.war'
+				sh 'scp webapp/target/webapp.war root@172.31.32.5:/var/lib/tomcat9/webapps/qaenv.war'
 			}}
 	}
 }
